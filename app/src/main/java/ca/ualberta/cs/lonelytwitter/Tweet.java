@@ -3,38 +3,35 @@ package ca.ualberta.cs.lonelytwitter;
 import java.util.Date;
 
 /**
- * Created by vinaykum on 1/9/19.
+ * Created by vinaykum on 1/15/19.
  */
 
-public abstract class Tweet {
+public class Tweet {
 
     String message;
-
-    String message2;
-
     Date date;
 
-    public void Tweet(){
-
-        message = "" ;
+    Tweet(){
 
     }
 
-    public void setMessage(String tweetmessage){
+    Tweet(String message){
 
-        message = tweetmessage;
+        this.message = message;
+    }
+
+    public void setMessage(String message){
+
+        this.message = message;
     }
 
     public String getMessage(){
+
         return message;
     }
 
-    public void setMessage(String tweetmessage, String message2){
-        message = tweetmessage;
-        this.message2 = message2;
-
-        System.out.println("second setMessage has been called");
+    @Override
+    public String toString(){
+        return message;
     }
-
-    public abstract String getSomething();
 }
