@@ -32,7 +32,7 @@ public class LonelyTwitterActivity extends Activity {
 	private static final String FILENAME = "file1.sav";
 	private EditText bodyText;
 	private ListView oldTweetsList;
-	private ArrayList<importantTweet> tweetList = new ArrayList<importantTweet>();
+	private ArrayList<importantTweet> tweetList ;
 	private ArrayAdapter<importantTweet> adapter;
 
 	/** Called when the activity is first created. */
@@ -44,6 +44,8 @@ public class LonelyTwitterActivity extends Activity {
 		bodyText = (EditText) findViewById(R.id.body);
 		Button saveButton = (Button) findViewById(R.id.save);
 		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
+
+
 
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
@@ -113,7 +115,10 @@ public class LonelyTwitterActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onStart();
 
+        tweetList = new ArrayList<importantTweet>();
+
 		loadFromFile();
+
 
 		adapter = new ArrayAdapter<importantTweet>(this,
 				R.layout.list_item, tweetList);
@@ -175,6 +180,7 @@ public class LonelyTwitterActivity extends Activity {
 			Gson gson = new Gson();
 
 			gson.toJson(tweetList, out);
+			out.close();
 
 
 
