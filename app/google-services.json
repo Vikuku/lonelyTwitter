@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "848847094294",
+    "firebase_url": "https://cmputdemo2.firebaseio.com",
+    "project_id": "cmputdemo2",
+    "storage_bucket": "cmputdemo2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:848847094294:android:988d2e0f27df0599",
+        "android_client_info": {
+          "package_name": "ca.ualberta.cs.lonelytwitter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "848847094294-40fhg4inu045ujmodnpuga2giaf0352n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBukOCCPtA-yj9ZYWb8eCwQDwErc-IGyt0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

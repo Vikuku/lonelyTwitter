@@ -23,9 +23,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+
+import com.firebase.client.FirebaseError;
+import com.firebase.client.GenericTypeIndicator;
+import com.firebase.client.ValueEventListener;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
+
 
 public class LonelyTwitterActivity extends Activity {
 
@@ -41,6 +49,9 @@ public class LonelyTwitterActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
+		Firebase.setAndroidContext(this);
+
+		final Firebase ref = new Firebase("https://cmputdemo2.firebaseio.com/");
 		bodyText = (EditText) findViewById(R.id.body);
 		Button saveButton = (Button) findViewById(R.id.save);
 		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
@@ -53,11 +64,18 @@ public class LonelyTwitterActivity extends Activity {
 				setResult(RESULT_OK);
 				String text = bodyText.getText().toString();
 
+				Firebase tweetchild = ref.child("Tweet");
+
+
+
 				importantTweet tweet = new importantTweet();
 				tweet.setMessage(text);
 
+
+
 				tweetList.add(tweet);
 
+				tweetchild.setValue(tweetList);
 				adapter.notifyDataSetChanged();
 
 				saveInFile();
@@ -66,6 +84,25 @@ public class LonelyTwitterActivity extends Activity {
 			}
 		});
 
+		ref.addValueEventListener(new ValueEventListener() {
+
+			public void onDataChange(DataSnapshot snapshot) {
+				tweetList.clear();
+
+
+				 for(DataSnapshot d: snapshot.child("Tweet").getChildren()){
+					 importantTweet temp = d.getValue(importantTweet.class);
+					 tweetList.add(temp);
+
+					 adapter.notifyDataSetChanged();
+				 }
+
+			}
+
+			public void onCancelled(FirebaseError firebaseError) {
+				System.out.println("The read failed: " + firebaseError.getMessage());
+			}
+		});
 		/*
 		Tweet firsttweet;
 		firsttweet = new importantTweet();
